@@ -8,7 +8,7 @@ var stream = tail('/var/log/some.log')
 
 stream.on('data',function(buf){
   console.log(buf,'is the data read from the file.')
-  console.log(buf.offset,'is the byte offset of the bufers starting position in the file')
+  console.log(buf.start,'is the byte offset of the bufers starting position in the file')
 })
 
 stream.on('waiting',function(duration){

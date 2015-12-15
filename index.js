@@ -15,7 +15,7 @@ function keepReading (file, start) {
   start = +start || -1
   // must be an object stream of buffers because we set offset property to identify where in the file this buffer starts.
   var s = through2.obj(function (chunk, enc, cb) {
-    chunk.offset = start
+    chunk.start = start + 1
     start += chunk.length
     backoff.reset()
     cb(false, chunk)

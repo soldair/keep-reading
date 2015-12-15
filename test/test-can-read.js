@@ -7,7 +7,7 @@ var eos = require('end-of-stream')
 var clean = common.clean()
 
 test('can tail file?', function (t) {
-  t.plan(3)
+  t.plan(5)
 
   var f = './' + Date.now() + '.test'
   clean.push(f)
@@ -28,10 +28,12 @@ test('can tail file?', function (t) {
   eos(s, function (err) {
     if (err) throw err
 
-    console.log('ended!')
+    written = Buffer.concat(written)
 
-    written = Buffer.concat(written) + ''
-    read = Buffer.concat(read) + ''
+    t.equals(read[0].start, 0, 'should have offset 0')
+    t.equals(read[1].start, read[0].offset + read[0].length, 'start should be first byte of event')
+
+    read = Buffer.concat(read)
 
     t.equals(written.length, read.length, 'should have read everything that was written')
   })
