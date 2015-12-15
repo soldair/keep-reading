@@ -19,14 +19,14 @@ function keepReading (file, start) {
     start += chunk.length
     backoff.reset()
     cb(false, chunk)
-  },function(cb){
-    ending = true;
+  }, function (cb) {
+    ending = true
     clearTimeout(timeout)
-    if(fd) {
+    if (fd) {
       fs.close(fd, function () {
         // handle close error... can this error in a way that results in an fd leak?
         cb()
-        setImmediate(function(){
+        setImmediate(function () {
           s.emit('close')
         })
       })
@@ -40,16 +40,15 @@ function keepReading (file, start) {
   return s
 
   function makeStream () {
-
-    if(ending) return;
+    if (ending) return
 
     if (!fd) {
-      fs.open(file,'r',function (err,_fd) {
-        if(ending) {
-          if(_fd) fs.close(_fd);
+      fs.open(file, 'r', function (err, _fd) {
+        if (ending) {
+          if (_fd) fs.close(_fd)
           return
         }
-        if(err) return s.emit('error',err)
+        if (err) return s.emit('error', err)
 
         fd = _fd
         s.emit('open', fd)
@@ -57,9 +56,9 @@ function keepReading (file, start) {
       })
     } else {
       stream()
-    } 
+    }
 
-    function stream(){
+    function stream () {
       // start is inclusive
       var opts = {start: start + 1}
       // reuse fd and do not close it when read stream is done.
@@ -71,10 +70,10 @@ function keepReading (file, start) {
 
       eos(rs, function (err) {
         if (err) return s.emit('error', err)
-        if(ending) return;
+        if (ending) return
 
         var wait = backoff.duration()
-        s.emit('waiting',wait)
+        s.emit('waiting', wait)
         timeout = setTimeout(function () {
           makeStream()
         }, wait)
