@@ -1,0 +1,35 @@
+{
+  "name": "keep-reading",
+  "version": "1.0.0",
+  "description": "keep reading a file. like tail but with no concept of lines and no watching.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc tape ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soldair/keep-reading.git"
+  },
+  "keywords": [
+    "tail",
+    "file",
+    "stream"
+  ],
+  "author": "Ryan Day <soldair@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soldair/keep-reading/issues"
+  },
+  "homepage": "https://github.com/soldair/keep-reading#readme",
+  "dependencies": {
+    "backo": "^1.1.0",
+    "end-of-stream": "^1.1.0",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "nyc": "^5.0.0",
+    "rimraf": "^2.4.4",
+    "standard": "^5.4.1",
+    "tape": "^4.2.2"
+  }
+}
