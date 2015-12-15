@@ -30,6 +30,8 @@ function keepReading (file, start) {
           s.emit('close')
         })
       })
+    } else {
+      cb()
     }
   })
 
@@ -43,7 +45,10 @@ function keepReading (file, start) {
 
     if (!fd) {
       fs.open(file,'r',function (err,_fd) {
-        if(ending) return;
+        if(ending) {
+          if(_fd) fs.close(_fd);
+          return
+        }
         if(err) return s.emit('error',err)
 
         fd = _fd
