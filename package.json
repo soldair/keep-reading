@@ -4,7 +4,8 @@
   "description": "keep reading a file. like tail but with no concept of lines and no watching.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc tape ./test/test.js"
+    "test": "nyc tape ./test/test.js",
+    "coverage": "nyc -r html node test/test.js"
   },
   "repository": {
     "type": "git",
