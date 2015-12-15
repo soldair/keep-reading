@@ -1,6 +1,6 @@
 {
   "name": "keep-reading",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "keep reading a file. like tail but with no concept of lines and no watching.",
   "main": "index.js",
   "scripts": {
